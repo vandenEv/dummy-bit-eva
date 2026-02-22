@@ -1,0 +1,24 @@
+# Compute knobs — keep these small to stay below the carbon-check threshold.
+experiment_name: "pass_small_cpu"
+seed: 42
+
+# Dataset
+dataset_size: 500        # number of synthetic samples
+input_dim: 16            # feature dimension
+num_classes: 4
+
+# Model architecture
+hidden_dim: 64           # width of each hidden layer
+num_layers: 2            # number of hidden layers
+
+# Training
+epochs: 5
+batch_size: 32
+learning_rate: 0.001
+
+# Evaluation
+eval_every_n_steps: 50   # evaluate every N steps (high number = less frequent)
+
+# Misc
+use_cache: false         # no caching needed at this scale
+fast_dev_run: false
