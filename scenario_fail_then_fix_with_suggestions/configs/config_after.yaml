@@ -1,0 +1,34 @@
+# AFTER STATE — PASSES CARBON GATE
+# All three remediations applied:
+#   [1] Early stopping + reduced epochs
+#   [2] Smaller model (hidden_dim, num_layers)
+#   [3] Caching + fast_dev_run + smaller dataset
+experiment_name: "pass_after_fix"
+seed: 42
+
+# Dataset — reduced for PR checks
+dataset_size: 500           # FIX 3: was 8000
+input_dim: 32
+num_classes: 8
+
+# Model — right-sized for the task
+hidden_dim: 128             # FIX 2: was 256
+num_layers: 3               # FIX 2: was 6
+
+# Training — early stopping reduces wasted epochs
+epochs: 10                  # FIX 1: was 40
+batch_size: 64
+learning_rate: 0.0005
+
+# Evaluation — much less frequent
+eval_every_n_steps: 50      # FIX 3: was 1
+
+# Caching — enabled
+use_cache: true             # FIX 3: was false
+
+# Early stopping — enabled
+early_stopping: true        # FIX 1: was false
+patience: 3                 # stop if val_loss doesn't improve for 3 epochs
+
+# Fast dev run — enabled (one-batch smoke test for PR checks)
+fast_dev_run: true          # FIX 3: was false

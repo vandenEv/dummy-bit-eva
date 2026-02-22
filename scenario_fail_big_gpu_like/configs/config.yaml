@@ -1,0 +1,31 @@
+# !! HIGH COMPUTE CONFIG — EXPECTED TO FAIL CARBON GATE !!
+# These values are intentionally wasteful for demonstration purposes.
+experiment_name: "fail_big_gpu_like"
+seed: 42
+
+# Dataset — very large
+dataset_size: 10000      # 20× the passing scenario
+input_dim: 64            # wider features
+num_classes: 10
+
+# Model architecture — deep and wide (transformer-like dimensions)
+hidden_dim: 512          # much wider than necessary
+num_layers: 8            # deep stack; expensive forward pass
+num_heads: 8             # multi-head attention heads
+dropout: 0.1
+
+# Training — excessive epochs, no stopping
+epochs: 50               # no early stopping configured
+batch_size: 256          # large batch — more memory & compute per step
+learning_rate: 0.0001
+
+# Evaluation — run every single step (WASTEFUL)
+eval_every_n_steps: 1    # evaluates the full val set after every batch
+
+# Caching — disabled (preprocessing recomputed each epoch)
+use_cache: false         # WASTEFUL: synthetic preprocessing repeated each epoch
+
+# Augmentation repeats per sample (WASTEFUL nested loop)
+augmentation_repeats: 5  # each sample is augmented 5× per epoch
+
+fast_dev_run: false

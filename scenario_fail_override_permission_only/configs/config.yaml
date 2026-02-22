@@ -1,0 +1,38 @@
+# !! HIGH COMPUTE — FAILS CARBON GATE — OVERRIDE REQUIRED !!
+# No code fix is intended; override is performed via GitHub permissions.
+#
+# To demonstrate override:
+#   A maintainer (write/admin role) comments on the PR:
+#   /carbon-override reason: "<reason>"
+#
+# ALLOW_OVERRIDE_DEMO is a narration flag only — see src/train.py.
+experiment_name: "fail_override_demo"
+seed: 42
+
+# Dataset
+dataset_size: 9000
+input_dim: 48
+num_classes: 10
+
+# Model — intentionally heavy (no fix applied)
+hidden_dim: 384
+num_layers: 7
+num_heads: 8
+dropout: 0.1
+
+# Training — no early stopping, high epoch count
+epochs: 45
+batch_size: 256
+learning_rate: 0.0001
+
+# Evaluation — every step (wasteful)
+eval_every_n_steps: 1
+
+# Caching disabled
+use_cache: false
+
+# Override demo flag (narration only; not enforced here)
+# See README: actual enforcement is in carbon-gate.yml
+allow_override_demo: true
+
+fast_dev_run: false

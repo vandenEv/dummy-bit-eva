@@ -1,0 +1,1 @@
+# scenario_fail_override_permission_only/tests/__init__.py

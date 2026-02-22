@@ -1,0 +1,1 @@
+# scenario_fail_then_fix_with_suggestions/src_fixed/__init__.py

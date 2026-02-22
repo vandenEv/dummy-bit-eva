@@ -1,0 +1,35 @@
+# !! BEFORE STATE — FAILS CARBON GATE !!
+# Commit history:
+#   initial: this file as-is
+#   fix 1:   set epochs: 10, early_stopping: true, patience: 3
+#   fix 2:   set hidden_dim: 128, num_layers: 3
+#   fix 3:   set use_cache: true, fast_dev_run: true, dataset_size: 500, eval_every_n_steps: 50
+experiment_name: "fail_before"
+seed: 42
+
+# Dataset
+dataset_size: 8000          # WASTEFUL: 8000 samples for a PR check
+input_dim: 32
+num_classes: 8
+
+# Model — over-specified for the task
+hidden_dim: 256             # WASTEFUL: needs only ~64
+num_layers: 6               # WASTEFUL: needs only ~2-3
+
+# Training
+epochs: 40                  # WASTEFUL: way too many; no early stopping
+batch_size: 256
+learning_rate: 0.0005
+
+# Evaluation — runs every step (WASTEFUL)
+eval_every_n_steps: 1       # WASTEFUL: should be every 50-100 steps
+
+# Caching — disabled (WASTEFUL)
+use_cache: false             # WASTEFUL: preprocessing repeated each epoch
+
+# Early stopping — disabled (WASTEFUL)
+early_stopping: false
+patience: 0
+
+# Fast dev run — disabled (WASTEFUL for PR checks)
+fast_dev_run: false
