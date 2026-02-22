@@ -4,7 +4,7 @@ Generates a small, fast, fully in-memory classification dataset.
 No disk I/O; deterministic given a fixed seed.
 """
 
-print("Importing data.py....more edits...hopefully lastttttt")
+print("please make this the last")
 from __future__ import annotations
 
 import numpy as np
