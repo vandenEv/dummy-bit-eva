@@ -57,3 +57,6 @@ def build_model(cfg: dict) -> DeepMLP:
         num_layers=cfg["num_layers"],
         num_classes=cfg["num_classes"],
     )
+
+
+print("Model code loaded successfully.")
